@@ -1,0 +1,24 @@
+<config>
+    <registry_paths>
+        <registry_path>HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall</registry_path>
+        <registry_path>HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall</registry_path>
+    </registry_paths>
+    <apps>
+        <app>
+            <name>firefox</name>
+            <exe>firefox.exe</exe>
+        </app>
+        <app>
+            <name>chrome</name>
+            <exe>chrome.exe</exe>
+        </app>
+        <app>
+            <name>opera</name>
+            <exe>launcher.exe</exe>
+        </app>
+        <app>
+            <name>yandexbrowser</name>
+            <exe>browser.exe</exe>
+        </app>
+    </apps>
+</config>
