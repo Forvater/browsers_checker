@@ -421,8 +421,24 @@ void parse_output(std::string aCommand_line_str) {
         std::string l_app_file_version_ls = pCurrent->FirstChildElement("file_version_ls")->GetText();
         unsigned long l_app_file_version_ms_ul = std::stoul(l_app_file_version_ms, nullptr, 0);
         unsigned long l_app_file_version_ls_ul = std::stoul(l_app_file_version_ls, nullptr, 0);
-        std::cout << l_app_name << " Version: " << ((l_app_file_version_ms_ul >> 16) & 0xffff) << "." << ((l_app_file_version_ms_ul >> 0) & 0xffff) << "." << ((l_app_file_version_ls_ul >> 16) & 0xffff) << "." << ((l_app_file_version_ls_ul >> 0) & 0xffff) << std::endl;
+        AppOutput l_app_output;
+        l_app_output.m_name = l_app_name;
+        l_app_output.m_exe_name = l_app_exe;
+        l_app_output.m_install_path = l_app_install_path;
+        l_app_output.m_file_version_ms = l_app_file_version_ms_ul;
+        l_app_output.m_file_version_ls = l_app_file_version_ls_ul;
+        gAppsOutput.push_back(l_app_output);
         pCurrent = pCurrent->NextSiblingElement();
+    }
+}
+
+void print_output() {
+    for (auto app_output : gAppsOutput) {
+        std::cout << app_output.m_name << " Version: "
+                  << ((app_output.m_file_version_ms >> 16) & 0xffff) << "."
+                  << ((app_output.m_file_version_ms >> 0) & 0xffff) << "."
+                  << ((app_output.m_file_version_ls >> 16) & 0xffff) << "."
+                  << ((app_output.m_file_version_ls >> 0) & 0xffff) << std::endl;
     }
 }
 
@@ -477,6 +493,7 @@ int main(int argc, char* argv[])
     }
     else if (std::string(argv[1]) == "-l") {
         parse_output(argv[2]);
+        print_output();
     }
 
     return 0;
