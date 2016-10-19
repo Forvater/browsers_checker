@@ -475,14 +475,11 @@ void get_ie_info() {
 
 int main(int argc, char* argv[])
 {
-
     if (argc < 3) {
         std::cerr << "Usage: " << argv[0] << " -r"<<" [full/path/to/config]" << std::endl;
         std::cerr << "Usage: " << argv[0] << " -l" << " [full/path/to/output]" << std::endl;
-
         return 1;
     }
-
     if (std::string(argv[1]) == "-r") {
         parse_config(argv[2]);
         open_reg_key_and_create_sub_paths();
@@ -495,6 +492,5 @@ int main(int argc, char* argv[])
         parse_output(argv[2]);
         print_output();
     }
-
     return 0;
 }
